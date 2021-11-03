@@ -5,13 +5,13 @@ import axios from 'axios';
 //Read Class Extending Component
 class Read extends Component
 {
-    //Method
+    //Method Retrieve server.js
     componentDidMount() {
-        axios.get('https://jsonblob.com/api/jsonblob/894944504570986496')
+        axios.get('http://localhost:4000/api/movies')
         .then((response)=>{
-            this.setState({mymovies:response.data.movies})
+            this.setState({mymovies:response.data.mymovies})
         })
-        //Showing Error
+        //Catches Error
         .catch((error)=>{
             console.log(error);     
         });

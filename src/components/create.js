@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
-//Create Class Extending Component
+//Create class Extending Component
 class Create extends Component {
     constructor() {
         super();
@@ -15,11 +16,27 @@ class Create extends Component {
         }
     }
 
-    //methods
+    //method called when you click add movie
     handleSubmit(event) {
         alert('Movie Name: ' +this.state.Title +
         ' Movie Year: '+ this.state.Year +
         ' Movie Poster: '+ this.state.Poster)
+
+        //Object from the user entered values
+        const NewMovie ={
+            Title:this.state.Title,
+            Year:this.state.Year,
+            Poster:this.state.Poster
+        }
+
+        axios.post('http://localhost:4000/api/movies', NewMovie)
+        .then((response)=>{
+            console.log(response);
+        })
+        //Catches Error
+        .catch((err)=>{
+            console.log(err);
+        })
 
         //Stops from refreshing temporarly
         event.preventDefault(); 
